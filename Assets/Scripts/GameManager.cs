@@ -31,25 +31,6 @@ public class GameManager : MonoBehaviour
             SlideButton.SetActive(false);
         }
     }
-    private void Update()
-    {
-/*        if (pauseMenu.activeSelf || GameOverMenu.activeSelf || !isHardcoreLevel) return;
-        currentTime -= 1 * Time.deltaTime;
-        if (currentTime>0)
-        {
-            print("speeding down");
-            Time.timeScale = 1.5f;
-        }
-        else if (currentTime>-startingTime)
-        {
-            print("speeding up");
-            Time.timeScale = 2f;
-        }
-        else if (currentTime < -startingTime)
-        {
-            currentTime += startingTime * 2;
-        }*/
-    }
     int startScore = 00000;
     int currentScore;
     int currentCoins;
@@ -61,6 +42,10 @@ public class GameManager : MonoBehaviour
         currentTime = startingTime;
         isHardcoreLevel = SceneManager.GetActiveScene().name == "hardcoreLevel" ? true : false;
         Lives.text = lives.ToString();
+        if (isHardcoreLevel)
+        {
+            Time.timeScale = 1.7f;
+        }
     }
 
 
@@ -70,9 +55,6 @@ public class GameManager : MonoBehaviour
     {
         currentScore = startScore + (int)Time.timeSinceLevelLoad;
         score.text = currentScore.ToString("D5");
-        if (pauseMenu.activeSelf || GameOverMenu.activeSelf || !isHardcoreLevel) return;
-        Time.timeScale = 1.7f;
-
     }
 
     public void GameOver()
